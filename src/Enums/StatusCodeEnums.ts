@@ -7,6 +7,8 @@ enum StatusCodeEnums {
 
     USER_NOT_FOUND = 10010,
     USER_ALREADY_EXISTS,
+
+    ROLE_NOT_FOUND = 10020,
 }
 
 type StatusCodeKeys = keyof typeof StatusCodeEnums;

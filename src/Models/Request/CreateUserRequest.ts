@@ -16,4 +16,9 @@ export default class CreateUserRequest {
     @IsEmail()
     @MaxLength(50)
     email: string;
+
+    @IsNotEmpty()
+    @IsString()
+    @MaxLength(50)
+    board: string;
 }
