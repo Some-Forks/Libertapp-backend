@@ -47,4 +47,12 @@ export class UserService {
         }
         return findUser;
     }
+
+    async findByEmail(email: string): Promise<User> {
+        const findUser: User = await this._userDao.findByEmail(email);
+        if (!findUser) {
+            throw new HttpCustomException('User not found', StatusCodeEnums.USER_NOT_FOUND);
+        }
+        return findUser;
+    }
 }
