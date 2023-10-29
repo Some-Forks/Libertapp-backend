@@ -1,5 +1,6 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { GenericTable } from './GenericTable';
+import { Role } from './RoleEntity';
 
 @Entity()
 export class User extends GenericTable {
@@ -22,8 +23,15 @@ export class User extends GenericTable {
     @Column({ nullable: false, length: 255 })
     private password: string;
 
+    @Column({ nullable: false, length: 50 })
+    private board: string;
+
     @Column({ nullable: false, name: 'is_active', type: 'boolean', default: false })
     private isActive: boolean;
+
+    @ManyToOne(() => Role, (role) => role.id)
+    @JoinColumn({ name: 'role_id' })
+    private roleId: Role;
 
     public getUuid(): string {
         return this.uuid;
@@ -65,11 +73,27 @@ export class User extends GenericTable {
         this.password = password;
     }
 
+    public getBoard(): string {
+        return this.board;
+    }
+
+    public setBoard(board: string): void {
+        this.board = board;
+    }
+
     public isIsActive(): boolean {
         return this.isActive;
     }
 
     public setIsActive(isActive: boolean): void {
         this.isActive = isActive;
+    }
+
+    public getRoleId(): Role {
+        return this.roleId;
+    }
+
+    public setRoleId(roleId: Role): void {
+        this.roleId = roleId;
     }
 }
