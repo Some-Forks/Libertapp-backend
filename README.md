@@ -95,6 +95,12 @@ Los Daos (Data Access Objects) se utilizan para interactuar con la capa de almac
 ```
 ---
 
+### DER (Diagrama Entidad Relacion)
+https://dbdiagram.io/d/DER-LFDC-653e9f15ffbf5169f0ae0558
+![DER](./public/DER-LFDC.png)
+
+---
+
 ### Trabajando con la rama `develop`
 Este proyecto sigue un flujo de trabajo basado en ramas para mantener un desarrollo organizado y controlado. Asegúrate de seguir estas pautas al colaborar en el proyecto:
 
