@@ -39,4 +39,12 @@ export class UserService {
         await this._userDao.save(user);
         return new SuccessfulResponse('User created successfully');
     }
+
+    async findById(id: number): Promise<User> {
+        const findUser: User = await this._userDao.findOneById(id);
+        if (!findUser) {
+            throw new HttpCustomException('User not found', StatusCodeEnums.USER_NOT_FOUND);
+        }
+        return findUser;
+    }
 }

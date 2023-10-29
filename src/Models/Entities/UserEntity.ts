@@ -33,6 +33,9 @@ export class User extends GenericTable {
     @JoinColumn({ name: 'role_id' })
     private roleId: Role;
 
+    @Column({ nullable: true, type: 'text', name: 'refresh_token' })
+    private refreshToken: string;
+
     public getUuid(): string {
         return this.uuid;
     }
@@ -95,5 +98,13 @@ export class User extends GenericTable {
 
     public setRoleId(roleId: Role): void {
         this.roleId = roleId;
+    }
+
+    public getRefreshToken(): string {
+        return this.refreshToken;
+    }
+
+    public setRefreshToken(refreshToken: string): void {
+        this.refreshToken = refreshToken;
     }
 }
