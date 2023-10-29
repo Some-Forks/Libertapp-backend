@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    postgres:
+        container_name: lfdc_postgres_local
+        image: "postgres:15.2-alpine"
+        user: postgres
+        environment:
+            - POSTGRES_USER=lfdc_ms_local
+            - POSTGRES_PASSWORD=lfdc_ms_local
+            - POSTGRES_DB=lfdc_ms_local
+        ports:
+        - 5432:5432
+        volumes: 
+        - postgres_data:/var/lib/postgresql/data
+    rabbitmq:
+        image: "rabbitmq:3-management-alpine"
+        container_name: lfdc_rabbit_local
+        environment:
+            RABBITMQ_ERLANG_COOKIE: cookie.develop
+            RABBITMQ_DEFAULT_USER: guest
+            RABBITMQ_DEFAULT_PASS: guest
+            RABBITMQ_DEFAULT_VHOST: /
+        ports:
+            - 5672:5672
+            - 15672:15672
+volumes:
+  postgres_data:
+    driver: local
