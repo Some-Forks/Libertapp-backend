@@ -14,6 +14,7 @@ enum StatusCodeEnums {
 
     FILE_REQUIRED = 10040,
     FILE_TYPE_NOT_ALLOWED,
+    FILE_UPLOAD_FAILED,
 }
 
 type StatusCodeKeys = keyof typeof StatusCodeEnums;

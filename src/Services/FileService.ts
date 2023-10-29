@@ -8,12 +8,16 @@ import { S3Service } from 'src/Services/S3Service';
 import { User } from 'src/Models/Entities/UserEntity';
 import { UserDao } from 'src/Daos/UserDao';
 import UploadFileRequest from 'src/Models/Request/FileController/UploadFileRequest';
+import { File } from 'src/Models/Entities/FileEntity';
+import { v4 as uuidv4 } from 'uuid';
+import { FileDao } from 'src/Daos/FileDao';
 
 @Injectable()
 export class FileService {
     constructor(
         private readonly _s3Service: S3Service,
         private readonly _userDao: UserDao,
+        private readonly _fileDao: FileDao,
         private readonly _configService: ConfigService,
     ) {}
 
@@ -36,7 +40,19 @@ export class FileService {
             Body: file.buffer,
             Key: `${this._configService.get('AWS_PREFIX_IMAGES')}/${key}/${file.originalname}`,
         };
-        return await this._s3Service.upload(options);
+
+        const newFile: File = new File();
+        newFile.setUserId(findUser);
+        newFile.setLocationS3(options.Key);
+        newFile.setBoard(findUser.getBoard());
+        newFile.setUuid(uuidv4());
+        try {
+            await this._fileDao.save(newFile);
+            return await this._s3Service.upload(options);
+        } catch (error) {
+            await this._fileDao.deleteByLocationS3(options.Key);
+            throw new HttpCustomException(`The file could not be uploaded`, StatusCodeEnums.FILE_UPLOAD_FAILED);
+        }
     }
 
     private _validateType(type: string) {
