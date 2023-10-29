@@ -45,6 +45,7 @@ module.exports = {
     "no-param-reassign": "off",
     "no-restricted-syntax": "off",
     "no-empty-function": "off",
+    "no-return-await": "off",
 },
 settings: {
   'import/resolver': {

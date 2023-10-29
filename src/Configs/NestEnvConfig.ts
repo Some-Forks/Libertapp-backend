@@ -14,4 +14,13 @@ export const envModelTransformer = (envs: any) => ({
         autoLoadEntities: envs.DATABASE_AUTO_LOAD_ENTITIES,
         keepConnectionAlive: true,
     },
+    AWS_FACTORY: {
+        region: envs.AWS_REGION,
+        credentials: {
+            accessKeyId: envs.AWS_ACCESS_KEY_ID,
+            secretAccessKey: envs.AWS_SECRET_ACCESS_KEY,
+        },
+        apiVersion: envs.AWS_API_VERSION,
+        signatureVersion: envs.AWS_SIGNATURE_VERSION,
+    },
 });
