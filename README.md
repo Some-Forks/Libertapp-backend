@@ -25,8 +25,6 @@
 ## Description
 LEER ATENTAMENTE ANTES DE COMENZAR A TRABAJAR EN EL PROYECTO
 
-Este proyecto es/sera (en caso de que se aprueve por los owners de la idea) el backend de la aplicacion https://github.com/Las-Fuerzas-Del-Cielo/Sistema-Anti-Fraude-Electoral
-
 ### Tecnologias
 - NestJS
 - TypeORM
